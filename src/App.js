@@ -1,24 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import Counter from './components/Counter';
+import MyContextStore from './MyContextStore';
+import useCounter from './components/Counter/useCounter';
+import AddButton from './components/AddButton';
+import CounterDisplay from './components/CounterDisplay';
+import Sum from './components/Sum';
 
 function App() {
+  const { dispatch, counter } = useCounter();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MyContextStore.Provider value={{ dispatch, counter }}>
+      <div className="App">
+        <Counter />
+        <CounterDisplay />
+        <AddButton />
+        <CounterDisplay />
+        <AddButton />
+        <Sum />
+      </div>
+    </MyContextStore.Provider>
   );
 }
 
